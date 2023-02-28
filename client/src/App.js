@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Status from "./components/Status";
+import Form from "./components/Form";
 
 // Componente principal de la aplicación.
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
   return (
     <main>
       <h1>Curso de React de TrainingIT</h1>
+      <Form/>
       <p>
         Estado del servidor:
         {loading ? " Cargando..." : <Status status={status} />}
