@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { DEFAULT_STATE } from "../constants/form";
+import './Form.css';
 
 const Form = () => {
     const [formState, setFormState] = useState(DEFAULT_STATE);
@@ -17,17 +18,24 @@ const Form = () => {
     }
 
     return ( 
-        <div className="row">
-            <div className="col-6">
+        <div className="centrado">
+            <div>
                 <form onSubmit={onSubmit}>
-                    <label htmlFor="name">Nombre</label>
-                    <input ref={nameRef} id="name" type="text"
-                        defaultValue={formState.name} />
-                    <label htmlFor="name">Contraseña</label>
-                    <input ref={passwordRef} id="password" type="text"
-                        defaultValue={formState.password} />
-                    <button>Registrar</button>
-                    <button>Iniciar sesión</button>
+                    <div>
+                        <label htmlFor="name">Nombre</label>
+                        <input ref={nameRef} id="name" type="text"
+                            defaultValue={formState.name} />
+                    </div>
+                    <div>
+                        <label htmlFor="name">Contraseña</label>
+                        <input ref={passwordRef} id="password" type="text"
+                            defaultValue={formState.password} />
+                    </div>
+                    <div>
+                        <button>Registrar</button>
+                        <button>Iniciar sesión</button>
+                    </div>
+                    
                 </form>
             </div>
             <div className="col-6">

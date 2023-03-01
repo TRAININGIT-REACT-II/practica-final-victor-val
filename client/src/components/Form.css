@@ -1,0 +1,16 @@
+.centrado {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 200px;
+    margin: 2rem auto;
+  }
+
+  form div {
+    padding-top: 20px;
+  }
+
+  button {
+    margin-right: 10px;
+  }
