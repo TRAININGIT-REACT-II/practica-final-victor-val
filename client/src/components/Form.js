@@ -27,6 +27,7 @@ const Form = () => {
                     <input ref={passwordRef} id="password" type="text"
                         defaultValue={formState.password} />
                     <button>Registrar</button>
+                    <button>Iniciar sesión</button>
                 </form>
             </div>
             <div className="col-6">
