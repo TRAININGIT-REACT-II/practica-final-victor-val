@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { DEFAULT_STATE } from "../constants/form";
-import './Form.css';
+import './FormAuthentication.css';
 
-const Form = () => {
+const FormAuthentication = () => {
     const [formState, setFormState] = useState(DEFAULT_STATE);
 
     const nameRef = useRef(null);
@@ -49,4 +49,4 @@ const Form = () => {
      );
 }
  
-export default Form;
+export default FormAuthentication;
