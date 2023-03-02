@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Status from "./components/Status";
 import FormAuthentication from "./components/FormAuthentication";
+import Notes from "./components/Notes";
 
 // Componente principal de la aplicación.
 const App = () => {
@@ -17,14 +19,22 @@ const App = () => {
 
   // Mostramos la aplicación
   return (
-    <main>
-      <h1>Curso de React de TrainingIT</h1>
-      <FormAuthentication/>
-      <p>
-        Estado del servidor:
-        {loading ? " Cargando..." : <Status status={status} />}
-      </p>
-    </main>
+    <Router>
+      <Routes>
+        <Route path="/" exact element={
+          <main>
+            <h1>Curso de React de TrainingIT</h1>
+            <FormAuthentication />
+            <p>
+              Estado del servidor:
+              {loading ? " Cargando..." : <Status status={status} />}
+            </p>
+          </main>
+        }>
+        </Route>
+        <Route path="/notes" element={<Notes/>} />
+      </Routes>
+    </Router>
   );
 };
 
