@@ -1,4 +1,5 @@
 const Notes = () => {
+    
     return (
         <div>
             Notas (seccion privada)

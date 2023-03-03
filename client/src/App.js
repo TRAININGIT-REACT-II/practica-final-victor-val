@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation  } from "react-router-dom";
 import Status from "./components/Status";
 import FormAuthentication from "./components/FormAuthentication";
 import Notes from "./components/Notes";
-import PrivateRoute from "./components/PrivateRoute";
 import User from "./contexts/user";
 
 // Componente principal de la aplicación.
@@ -37,7 +36,7 @@ const App = () => {
             </main>
           }>
           </Route>
-          <Route path="/notes" element={<PrivateRoute/>} />
+          {signedIn && <Route path="/notes" element={<Notes/>} /> }
           <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Router>

@@ -1,20 +1,26 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
+import { useNavigate} from 'react-router-dom';
 import { DEFAULT_STATE } from "../constants/form";
 import './FormAuthentication.css';
+import User from "../contexts/user";
 
 const FormAuthentication = () => {
     const [formState, setFormState] = useState(DEFAULT_STATE);
+    const user = useContext(User);
+    const navigate = useNavigate();
 
     const nameRef = useRef(null);
     const passwordRef = useRef(null);
 
     const onSubmit = (e) => {
         e.preventDefault();
+        user.updateUser(true);
         setFormState({
             ...DEFAULT_STATE,
             name: nameRef.current.value,
             password: passwordRef.current.value
           });
+          navigate('/notes');
     }
 
     return ( 
@@ -34,8 +40,7 @@ const FormAuthentication = () => {
                     <div>
                         <button>Registrar</button>
                         <button>Iniciar sesión</button>
-                    </div>
-                    
+                    </div>                    
                 </form>
             </div>
             <div className="col-6">
