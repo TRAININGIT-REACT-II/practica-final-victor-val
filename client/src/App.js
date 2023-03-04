@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Navigate, Route, Routes, useLocation  } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import Status from "./components/Status";
 import FormAuthentication from "./components/FormAuthentication";
 import Notes from "./components/Notes";
@@ -27,7 +27,7 @@ const App = () => {
         <Routes>
           <Route path="/" exact element={
             <main>
-              <h1>Curso de React de TrainingIT</h1>
+              <h1>Training notes</h1>
               <FormAuthentication />
               <p>
                 Estado del servidor:

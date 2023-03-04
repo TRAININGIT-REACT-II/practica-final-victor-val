@@ -6,3 +6,12 @@
 body {
   font-family: sans-serif;
 }
+
+#app {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 400px;
+  margin: 2rem auto;
+}
