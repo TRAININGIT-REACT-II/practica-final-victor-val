@@ -46,7 +46,7 @@ const useApi = (url, token = "", initialParams = {}, performOnMount = true) => {
 
       initialConfig.headers["token"] = token;
     }
-
+    
     return initialConfig;
   }, [url, token, fetchParams]);
 

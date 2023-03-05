@@ -32,17 +32,17 @@ const App = () => {
               {!signedIn && <p>Debe iniciar sesión o registrarse</p>}
               <nav className="secondary">
                 {signedIn && (
-                  <NavLink activeClassName="active" to="/notes">
+                  <NavLink to="/notes">
                     Ir a notas
                   </NavLink>
                 )}{" "}
                 {!signedIn && (
-                  <NavLink activeClassName="active" to="/login">
+                  <NavLink to="/login">
                     Iniciar sesión
                   </NavLink>
                 )}{" "}
                 {!signedIn && (
-                  <NavLink activeClassName="active" to="/signIn">
+                  <NavLink to="/register">
                     Registrarse
                   </NavLink>
                 )}
@@ -55,7 +55,7 @@ const App = () => {
           }>
           </Route>
           <Route path="/login" element={<Login/>}></Route>
-          <Route path="/signIn" element={<Registro/>}></Route>
+          <Route path="/register" element={<Registro/>}></Route>
 
           {signedIn && <Route path="/notes" element={<Notes/>} /> }
           <Route path='*' element={<Navigate to='/' />} />

@@ -91,7 +91,7 @@ fastify.get("/api", async () => {
  * el cuerpo del mensaje
  */
 fastify.post("/api/register", (request, reply) => {
-  const { username, password } = request.body;
+  const { username, password } = JSON.parse(request.body);
 
   const userExists = db.get("users").find({ username }).value();
 
@@ -134,7 +134,7 @@ fastify.post("/api/register", (request, reply) => {
  * Inicia sesión devolviendo el token para las peticiones
  */
 fastify.post("/api/login", (request, reply) => {
-  const { username, password } = request.body;
+  const { username, password } = JSON.parse(request.body);
 
   const user = db.get("users").find({ username }).value();
 

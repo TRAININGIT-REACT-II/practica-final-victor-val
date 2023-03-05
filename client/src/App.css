@@ -6,10 +6,6 @@ nav.secondary a {
     color: var(--mini-color-text);
   }
   
-  nav.secondary a.active {
-    border-color: var(--mini-color-primary);
-  }
-  
   nav.secondary a + a {
     margin-left: 0.5rem;
   }
