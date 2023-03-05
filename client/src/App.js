@@ -29,10 +29,13 @@ const App = () => {
           <Route path="/" exact element={
             <main>
               <h1>Training notes</h1>
+              {!signedIn && <p>Debe iniciar sesión o registrarse</p>}
               <nav className="secondary">
-                <NavLink exact activeClassName="active" to="/">
-                  Inicio
-                </NavLink>{" "}
+                {signedIn && (
+                  <NavLink activeClassName="active" to="/notes">
+                    Ir a notas
+                  </NavLink>
+                )}{" "}
                 {!signedIn && (
                   <NavLink activeClassName="active" to="/login">
                     Iniciar sesión
