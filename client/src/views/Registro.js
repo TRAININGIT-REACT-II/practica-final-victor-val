@@ -1,10 +1,10 @@
 import { useRef, useState, useContext } from "react";
 import { useNavigate} from 'react-router-dom';
 import { DEFAULT_STATE } from "../constants/form";
-import './FormAuthentication.css';
+import './Login.css';
 import User from "../contexts/user";
 
-const FormAuthentication = () => {
+const Registro = () => {
     const [formState, setFormState] = useState(DEFAULT_STATE);
     const user = useContext(User);
     const navigate = useNavigate();
@@ -38,20 +38,12 @@ const FormAuthentication = () => {
                             defaultValue={formState.password} />
                     </div>
                     <div>
-                        <button>Registrar</button>
-                        <button>Iniciar sesión</button>
+                        <button>Registrarse</button>
                     </div>                    
                 </form>
-            </div>
-            <div className="col-6">
-                <pre>
-                    <code>
-                        {JSON.stringify(formState, null, 2)}
-                    </code>
-                </pre>
             </div>
         </div>
      );
 }
  
-export default FormAuthentication;
+export default Registro;
