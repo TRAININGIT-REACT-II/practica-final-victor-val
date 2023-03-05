@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { DEFAULT_STATE } from "../constants/form";
 import './Autenticacion.css';
 import User from "../contexts/user";
@@ -15,8 +15,11 @@ const Registro = () => {
     let token;
     if (registroRequest.data) {
         token = registroRequest.data.token;
-        user.updateUser(true);
     }
+
+    useEffect(() => {
+        user.updateUser(true); 
+      }, [token]);
 
     const onSubmit = (e) => {
         e.preventDefault();
