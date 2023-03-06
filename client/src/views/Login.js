@@ -25,6 +25,9 @@ const Login = () => {
         e.preventDefault();
         loginRequest.updateParams({
             method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
                 username: nameRef.current.value,
                 password: passwordRef.current.value,

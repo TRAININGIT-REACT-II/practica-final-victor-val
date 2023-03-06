@@ -25,6 +25,9 @@ const Registro = () => {
         e.preventDefault();
         registroRequest.updateParams({
             method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
                 username: nameRef.current.value,
                 password: passwordRef.current.value,
