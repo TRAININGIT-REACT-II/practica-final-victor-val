@@ -15,6 +15,7 @@ const Registro = () => {
     let token;
     if (registroRequest.data) {
         token = registroRequest.data.token;
+        localStorage.setItem('token', JSON.stringify(token));
     }
 
     useEffect(() => {

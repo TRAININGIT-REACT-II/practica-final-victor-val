@@ -14,12 +14,13 @@ const Login = () => {
 
     let token;
     if (loginRequest.data) {
-        token = loginRequest.data.token;        
+        token = loginRequest.data.token;
+        localStorage.setItem('token', JSON.stringify(token));
     }
 
     useEffect(() => {
-        user.updateUser(true); 
-      }, [token]);
+        user.updateUser(true);
+    }, [token]);
 
     const onSubmit = (e) => {
         e.preventDefault();

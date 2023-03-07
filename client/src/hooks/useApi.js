@@ -44,7 +44,7 @@ const useApi = (url, token = "", initialParams = {}, performOnMount = true) => {
         initialConfig.headers = {};
       }
 
-      initialConfig.headers["token"] = token;
+      initialConfig.headers["api-token"] = token;
     }
     
     return initialConfig;
@@ -59,7 +59,7 @@ const useApi = (url, token = "", initialParams = {}, performOnMount = true) => {
 
       // Limpiamos los errores
       setError("");
-
+      console.log(config)
       // Realizamos la llamada al servidor
       fetch(url, config)
         .then((res) => res.json())
