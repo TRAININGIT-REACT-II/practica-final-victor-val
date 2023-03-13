@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState} from "react";
+import {v4 as uuidv4} from 'uuid';
 import User from "../contexts/user";
 import useApi from "../hooks/useApi";
 
@@ -74,7 +75,7 @@ const Notes = () => {
             </h3>
 
             {notes && notes.map(note => (
-                <li>{note.title}</li>
+                <li key={uuidv4()}>{note.title}</li>
             ))}
             <div className="addNota">
                 <input ref={addNotaRef} type="text" placeholder='Nueva nota'></input>
