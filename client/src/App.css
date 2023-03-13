@@ -13,3 +13,12 @@ nav.secondary a {
   li > button {
     margin-left: 15px;
   }
+
+  .footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(133, 173, 180);
+    text-align: center;
+  }

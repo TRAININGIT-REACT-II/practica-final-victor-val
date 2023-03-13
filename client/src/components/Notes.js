@@ -74,7 +74,6 @@ const Notes = () => {
     }
 
     const handleDeleteNote = (id) => {
-        console.log(`borrar nota `, id);
         setNotaId(id);
         setBorrarNota(true);        
     }
@@ -104,8 +103,7 @@ const Notes = () => {
             <div className="addNota">
                 <input ref={addNotaRef} type="text" placeholder='Nueva nota'></input>
                 <button onClick={handleAddNota}>Añadir nota</button>
-            </div>
-            
+            </div>            
             
         </div>
     );
