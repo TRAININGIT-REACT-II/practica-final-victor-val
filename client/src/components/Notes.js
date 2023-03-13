@@ -6,12 +6,17 @@ import useApi from "../hooks/useApi";
 const Notes = () => {
     const user = useContext(User);
     const token = JSON.parse(localStorage.getItem("token"));
-    let notesRequest = useApi("/api/notes", token, {}, false);
-    let notesInsertRequest = useApi("/api/notes", token, {}, false);
+
     const addNotaRef = useRef();
     const [enviarNota, setEnviarNota] = useState(false);
-
+    const [borrarNota, setBorrarNota] = useState(false);
     const [notes, setNotes] = useState([]);
+    const [notaId, setNotaId] = useState("");
+
+    let notesRequest = useApi("/api/notes", token, {}, false);
+    let notesInsertRequest = useApi("/api/notes", token, {}, false);
+    let deleteRQ = useApi(`/api/notes/${notaId}`, token, {}, false);
+
     let nota;
 
     const fetchNotes = () => {
@@ -46,7 +51,7 @@ const Notes = () => {
 
     useEffect(() => {
         if(enviarNota){
-            const nota = addNotaRef.current.value;       
+            const nota = addNotaRef.current.value;     
             notesInsertRequest.updateParams({
                 method: "POST",
                 headers: {
@@ -66,7 +71,27 @@ const Notes = () => {
         nota = addNotaRef.current.value;
         if(nota === '') return;
         setEnviarNota(true);         
-    } 
+    }
+
+    const handleDeleteNote = (id) => {
+        console.log(`borrar nota `, id);
+        setNotaId(id);
+        setBorrarNota(true);        
+    }
+
+    useEffect(() => {  
+        if(borrarNota){
+            setBorrarNota(false);
+            deleteRQ.updateParams({
+                method: "DELETE",
+            });
+            deleteRQ.perform();
+            let notesAux = [...notes];
+            notesAux = notesAux.filter((item) => item.id !== notaId)
+            setNotes(notesAux);
+            
+        }        
+    }, [borrarNota]);
 
     return (
         <div>
@@ -74,7 +99,7 @@ const Notes = () => {
                 Notas (seccion privada)
             </h3>
 
-            <NoteList notes={notes}/>
+            <NoteList notes={notes} deleteNote={handleDeleteNote}/>
 
             <div className="addNota">
                 <input ref={addNotaRef} type="text" placeholder='Nueva nota'></input>
