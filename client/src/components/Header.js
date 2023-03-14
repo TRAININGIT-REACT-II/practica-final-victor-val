@@ -1,7 +1,7 @@
 import React from 'react'
 import { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import ThemeToggle from "./ThemeToggle";
 
 import User from '../contexts/user';
 
@@ -22,12 +22,14 @@ export default function Header() {
   };
 
   return (
-    <div className='header'>
+    <>
+      <div className='header'>
         {user.signedIn &&
           <span className='logout'>
             <a onClick={handleLogout}>Logout</a>
-        </span>
-        }
-    </div>
+          </span>}
+      </div>
+      <ThemeToggle />
+    </>
   )
 }

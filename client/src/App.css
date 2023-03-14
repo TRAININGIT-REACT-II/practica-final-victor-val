@@ -36,3 +36,56 @@ nav.secondary a {
     margin-right: 20px;
     cursor: pointer;
   }
+
+  .theme-toggle{
+    position: fixed;
+    left: 0;
+    top: 30px;    
+  }
+
+  :root {
+    --mini-color-text: #181818;
+    --mini-color-primary: #3acaf2;
+    --mini-color-accent: #f4d160;
+    --mini-color-secondary: #d3e0ea;
+    --mini-color-background: #f6f5f5;
+    --mini-color-element-background: #ffffff;
+    --mini-color-border-color: var(--mini-color-text);
+    /* Text */
+    --mini-font-base-size: 95%;
+    --mini-font-family: 'Lato', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Oxygen-Sans, Ubuntu, Helvetica, Arial, sans-serif;
+    --mini-font-scale: 1.115;
+    /* Shapes */
+    --mini-border-radius: 4px;
+    --mini-border-size: 1px;
+    /* Forms */
+    --mini-input-height: 42px;
+  }
+
+
+  /* Dark theme */
+  body.dark {
+    --mini-color-text: #f6f5f5;
+    --mini-color-primary: #3acaf2;
+    --mini-color-accent: #f4d160;
+    --mini-color-secondary: #d3e0ea;
+    --mini-color-background: #181818;
+    --mini-color-element-background: #343434;
+    --mini-color-border-color: var(--mini-color-text);
+  }
+
+  body.dark ::placeholder {
+    color: var(--mini-color-text);
+  }
+
+  body.dark {
+    color: var(--mini-color-text);
+    background-color: var(--mini-color-background);
+  }
+
+
+  /* Transition */
+  body {
+    transition: background-color .3s ease-in-out;
+  }
