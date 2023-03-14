@@ -22,6 +22,10 @@ const Notes = () => {
     const fetchNotes = () => {
         notesRequest.perform();
     }
+
+    if(notesRequest.error || notesInsertRequest.error || deleteRQ.error){
+        throw new Error("Error");
+    }
     
     useEffect(() => {
         if(notesRequest.data){
