@@ -10,7 +10,8 @@ const Home = () => {
   const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
-    user.updateUser(true);
+    if(token)
+      user.updateUser(true);
   }, [token]);
 
   return (

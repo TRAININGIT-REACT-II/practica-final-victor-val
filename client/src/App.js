@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Notes from "./components/Notes";
 import User from "./contexts/user";
@@ -24,8 +25,10 @@ const App = () => {
 
   // Mostramos la aplicación
   return (
-    <User.Provider value={{ signedIn, updateUser: setSignedIn }}>
+    <User.Provider value={{ signedIn, updateUser: setSignedIn }}>      
+      
       <Router>
+        <Header/>
         <Routes>
           <Route path="/" exact element={<Home/>}>
           </Route>

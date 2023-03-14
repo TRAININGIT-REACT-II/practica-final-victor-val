@@ -22,3 +22,17 @@ nav.secondary a {
     background-color: rgb(133, 173, 180);
     text-align: center;
   }
+
+  .header{
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgb(133, 173, 180);
+    text-align: right;
+  }
+
+  .logout{
+    margin-right: 20px;
+    cursor: pointer;
+  }

@@ -19,7 +19,8 @@ const Login = () => {
     }
 
     useEffect(() => {
-        user.updateUser(true);
+        if(token)
+            user.updateUser(true);
     }, [token]);
 
     const onSubmit = (e) => {
