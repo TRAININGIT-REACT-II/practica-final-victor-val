@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Notes from "./components/Notes";
@@ -48,14 +49,16 @@ const App = () => {
         <Router>
           <Header/>
           <ErrorBoundary message="Algo ha salido mal!">
+          <Suspense fallback="Cargando...">
             <Routes>
               <Route path="/" exact element={<Home/>}>
               </Route>
               <Route path="/login" element={<Login/>}></Route>
-              <Route path="/register" element={<Registro/>}></Route>
-              {signedIn && <Route path="/notes" element={<Notes/>} /> }
+              <Route path="/register" element={<Registro/>}></Route>              
+                {signedIn && <Route path="/notes" element={<Notes/>} /> }              
               <Route path='*' element={<Navigate to='/' />} />
             </Routes>
+            </Suspense>
           </ErrorBoundary>          
         </Router>
         <Footer loading={loading} status={status}/>
