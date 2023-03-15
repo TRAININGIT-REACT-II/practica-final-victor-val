@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState} from "react";
 import { NoteList } from "./NoteList";
+import Modal from "./Modal";
 import User from "../contexts/user";
 import useApi from "../hooks/useApi";
 
@@ -16,6 +17,10 @@ const Notes = () => {
     let notesRequest = useApi("/api/notes", token, {}, false);
     let notesInsertRequest = useApi("/api/notes", token, {}, false);
     let deleteRQ = useApi(`/api/notes/${notaId}`, token, {}, false);
+
+    const [showModal, setShowModal] = useState(false);
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
 
     let nota;
 
@@ -79,7 +84,12 @@ const Notes = () => {
 
     const handleDeleteNote = (id) => {
         setNotaId(id);
-        setBorrarNota(true);        
+        openModal();              
+    }
+
+    const deleteNote = () => {
+        setBorrarNota(true);
+        closeModal();
     }
 
     useEffect(() => {  
@@ -109,6 +119,12 @@ const Notes = () => {
                 <button onClick={handleAddNota}>Añadir nota</button>
             </div>            
             
+            <Modal show={showModal} onClose={closeModal}>
+                <h3>Borrar nota</h3>
+                <p>Confirma que desea borrar esta nota?</p>
+                <button onClick={deleteNote}>Aceptar</button>
+                <button onClick={closeModal}>Cancelar</button>
+            </Modal>
         </div>
     );
 }
