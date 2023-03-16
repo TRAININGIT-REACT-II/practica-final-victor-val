@@ -11,6 +11,7 @@ import { THEMES } from "./constants/themes";
 import Login from "./views/Login";
 import Registro from "./views/Registro";
 import Home from "./views/Home";
+import DetailNote from "./views/DetailNote";
 import './App.css';
 
 
@@ -53,7 +54,12 @@ const App = () => {
               </Route>
               <Route path="/login" element={<Login/>}></Route>
               <Route path="/register" element={<Registro/>}></Route>              
-              {signedIn && <Route path="/notes" element={<Notes/>} /> }              
+              {signedIn && 
+                <>
+                  <Route path="/notes" element={<Notes />} />
+                  <Route path="/notes/:id" element={<DetailNote />} />
+                </>
+              }              
               <Route path='*' element={<Navigate to='/' />} />
             </Routes>
             </Suspense>

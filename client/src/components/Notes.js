@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 import { useContext, useEffect, useState} from "react";
 import { NoteList } from "./NoteList";
 import Modal from "./Modal";
@@ -11,6 +12,7 @@ const Notes = () => {
     
     const [enviarNota, setEnviarNota] = useState(false);
     const [borrarNota, setBorrarNota] = useState(false);
+    const [showDetail, setShowDetail] = useState(false);
     const [notes, setNotes] = useState([]);
     const [notaId, setNotaId] = useState("");
     const [note, setNote] = useState("");
@@ -23,6 +25,7 @@ const Notes = () => {
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
+    
 
     const fetchNotes = () => {
         notesRequest.perform();
@@ -104,13 +107,21 @@ const Notes = () => {
         }        
     }, [borrarNota]);
 
+    const handleDetail = (id) => {
+        setNotaId(id);
+        console.log("detail")
+        setShowDetail(true);
+    }
+
     return (
         <div>
             <h3>
-                Notas (seccion privada)
+                Notas (sección privada)
             </h3>
 
-            <NoteList notes={notes} deleteNote={handleDeleteNote}/>
+            {showDetail && <Navigate to={`/notes/${notaId}`}/>}
+
+            <NoteList notes={notes} showDetail={handleDetail} deleteNote={handleDeleteNote}/>
 
             <NewNote handleAddNota={handleAddNota}/>           
             
