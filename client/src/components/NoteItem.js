@@ -7,8 +7,13 @@ export default function NoteItem({note, deleteNote}) {
   }
   return (
         <li key={uuidv4()}>
+          
           {note.title}
-          <button onClick={handleDeleteNote}>Delete</button>
+          <span>
+            <button>Ver detalle</button>
+            <button>Editar</button>
+            <button onClick={handleDeleteNote}>Delete</button>
+          </span>
         </li>
   );
 }

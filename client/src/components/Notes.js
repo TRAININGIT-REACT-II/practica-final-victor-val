@@ -1,18 +1,19 @@
-import { useContext, useEffect, useRef, useState} from "react";
+import { useContext, useEffect, useState} from "react";
 import { NoteList } from "./NoteList";
 import Modal from "./Modal";
+import NewNote from "../views/NewNote";
 import User from "../contexts/user";
 import useApi from "../hooks/useApi";
 
 const Notes = () => {
     const user = useContext(User);
     const token = JSON.parse(localStorage.getItem("token"));
-
-    const addNotaRef = useRef();
+    
     const [enviarNota, setEnviarNota] = useState(false);
     const [borrarNota, setBorrarNota] = useState(false);
     const [notes, setNotes] = useState([]);
     const [notaId, setNotaId] = useState("");
+    const [note, setNote] = useState("");
 
     let notesRequest = useApi("/api/notes", token, {}, false);
     let notesInsertRequest = useApi("/api/notes", token, {}, false);
@@ -22,7 +23,6 @@ const Notes = () => {
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
-    let nota;
 
     const fetchNotes = () => {
         notesRequest.perform();
@@ -59,26 +59,24 @@ const Notes = () => {
     }, [token]);
 
     useEffect(() => {
-        if(enviarNota){
-            const nota = addNotaRef.current.value;     
+        if(enviarNota){ 
             notesInsertRequest.updateParams({
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    title: nota,
-                    content: nota,
+                    title: note,
+                    content: note,
                 }),
-            });
-            addNotaRef.current.value = null;
+            });        
             notesInsertRequest.perform();
         }
     }, [enviarNota]);
 
-    const handleAddNota = () => {
-        nota = addNotaRef.current.value;
-        if(nota === '') return;
+    const handleAddNota = (note) => {
+        setNote(note);
+        if(note === '') return;
         setEnviarNota(true);         
     }
 
@@ -114,10 +112,7 @@ const Notes = () => {
 
             <NoteList notes={notes} deleteNote={handleDeleteNote}/>
 
-            <div className="addNota">
-                <input ref={addNotaRef} type="text" placeholder='Nueva nota'></input>
-                <button onClick={handleAddNota}>Añadir nota</button>
-            </div>            
+            <NewNote handleAddNota={handleAddNota}/>           
             
             <Modal show={showModal} onClose={closeModal}>
                 <h3>Borrar nota</h3>

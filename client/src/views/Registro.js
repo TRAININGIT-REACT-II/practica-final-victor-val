@@ -1,6 +1,5 @@
 import { useRef, useState, useContext, useEffect } from "react";
 import { DEFAULT_STATE } from "../constants/form";
-import './Autenticacion.css';
 import User from "../contexts/user";
 import useApi from "../hooks/useApi";
 import Notes from "../components/Notes";

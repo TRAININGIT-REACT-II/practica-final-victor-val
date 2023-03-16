@@ -9,9 +9,15 @@ nav.secondary a {
   nav.secondary a + a {
     margin-left: 0.5rem;
   }
-  
-  li > button {
+
+  li {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  li > span {
     margin-left: 15px;
+    text-align: right;
   }
 
   .footer{
@@ -88,4 +94,21 @@ nav.secondary a {
   /* Transition */
   body {
     transition: background-color .3s ease-in-out;
+  }
+
+  .centrado {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 200px;
+    margin: 2rem auto;
+  }
+
+  form div {
+    padding-top: 20px;
+  }
+
+  .error{
+    color: red;
   }

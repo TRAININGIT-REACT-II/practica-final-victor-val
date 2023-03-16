@@ -2,14 +2,12 @@ import React from 'react'
 import { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from "./ThemeToggle";
-
 import User from '../contexts/user';
 
 export default function Header() {
   const user = useContext(User);
   const token = JSON.parse(localStorage.getItem("token"));
   const navigate = useNavigate();
-
 
   const handleLogout = () => {
     user.updateUser(false);
