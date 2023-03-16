@@ -28,13 +28,13 @@ export default function DetailNote() {
         <div>
             <h3>Detalle de la nota</h3>
             <div>
-            {request.data &&
-            <>
-                <p>Title: {request.data.title}</p>
-                <p>Content: {request.data.content}</p>
-            </> 
-            }
-            <button onClick={handleBack}>Volver</button>
+                {request.data &&
+                <>
+                    <p>Title: {request.data.title}</p>
+                    <p>Content: {request.data.content}</p>
+                </> 
+                }
+                <button onClick={handleBack}>Volver</button>
             </div>
         </div>
     )
