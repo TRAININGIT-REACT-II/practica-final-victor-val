@@ -25,8 +25,6 @@ const Notes = () => {
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
-    
-
     const fetchNotes = () => {
         notesRequest.perform();
     }
