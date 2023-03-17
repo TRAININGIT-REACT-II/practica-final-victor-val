@@ -3,16 +3,22 @@ import { useRef} from "react";
 
 export default function NewNote({handleAddNota}) {
 
-    const addNotaRef = useRef();
+    const titleNotaRef = useRef();
+    const contentNotaRef = useRef();
 
     const newNote = () => {
-        handleAddNota(addNotaRef.current.value);
-        addNotaRef.current.value = null;
+        handleAddNota(titleNotaRef.current.value, contentNotaRef.current.value);
+        titleNotaRef.current.value = null;
+        contentNotaRef.current.value = null;
     }
 
     return (
         <div className="addNota">
-            <input ref={addNotaRef} type="text" placeholder='Nueva nota'></input>
+            <h5>Añadir nueva nota: </h5>
+            <input ref={titleNotaRef} type="text" placeholder='Title'></input>
+            <div className="sepArr">
+                <textarea ref={contentNotaRef} type="text" placeholder='Content'></textarea>
+            </div>
             <button onClick={newNote}>Añadir nota</button>
         </div> 
     )

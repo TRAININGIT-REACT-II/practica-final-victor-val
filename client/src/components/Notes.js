@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import NewNote from "../views/NewNote";
 import User from "../contexts/user";
 import useApi from "../hooks/useApi";
+import { Note } from "../models/Note";
 
 const Notes = () => {
     const user = useContext(User);
@@ -16,7 +17,7 @@ const Notes = () => {
     const [editNote, setEditNote] = useState(false);
     const [notes, setNotes] = useState([]);
     const [notaId, setNotaId] = useState("");
-    const [note, setNote] = useState("");
+    const [note, setNote] = useState();
 
     let notesRequest = useApi("/api/notes", token, {}, false);
     let notesInsertRequest = useApi("/api/notes", token, {}, false);
@@ -64,17 +65,18 @@ const Notes = () => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    title: note,
-                    content: note,
+                    title: note.title,
+                    content: note.content,
                 }),
             });        
             notesInsertRequest.perform();
         }
     }, [enviarNota]);
 
-    const handleAddNota = (note) => {
+    const handleAddNota = (title, content) => {
+        const note = new Note(title, content);
         setNote(note);
-        if(note === '') return;
+        if(note && (note.title === '' || note.content === '')) return;
         setEnviarNota(true);         
     }
 

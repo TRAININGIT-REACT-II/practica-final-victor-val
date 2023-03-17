@@ -16,7 +16,8 @@ export default function EditNote() {
     const [editar, setEditar] = useState(false);
     
     const navigate = useNavigate();
-    const editNotaRef = useRef();
+    const titleNotaRef = useRef();
+    const contentNotaRef = useRef();
 
     let params = useParams();
 
@@ -46,8 +47,10 @@ export default function EditNote() {
     }, [editar]);
 
     const editNote = () => {
-        const titulo = editNotaRef.current.value;
+        const titulo = titleNotaRef.current.value;
+        const content = contentNotaRef.current.value;
         note.title = titulo;
+        note.content = content;
         setEditar(true);
     }
 
@@ -60,8 +63,10 @@ export default function EditNote() {
             <h3>Edición de la nota</h3>
             <div>
                 <div className="addNota">
-                    <input ref={editNotaRef} type="text" defaultValue={note.title}></input>
-
+                    <input ref={titleNotaRef} type="text" defaultValue={note.title}></input>
+                    <div className="sepArr">
+                        <textarea ref={contentNotaRef} type="text" defaultValue={note.content}></textarea>
+                    </div>
                     <button onClick={editNote}>Editar nota</button>
                 </div> 
                 <button onClick={handleBack}>Volver</button>

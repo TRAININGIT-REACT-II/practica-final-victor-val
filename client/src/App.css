@@ -112,3 +112,7 @@ nav.secondary a {
   .error{
     color: red;
   }
+
+  .sepArr{
+    margin-top: 10px;
+  }
