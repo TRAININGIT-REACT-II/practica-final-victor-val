@@ -41,6 +41,10 @@ const App = () => {
       .finally(() => setLoading(false));
   }, []);
 
+  const onReset = () => {
+    window.location.reload(false);
+  }
+
 
   // Mostramos la aplicación
   return (
@@ -48,7 +52,7 @@ const App = () => {
       <Theme.Provider value={{ current: theme, update: setTheme}}>
         <Router>
           <Header/>
-          <ErrorBoundary message="Algo ha salido mal!">
+          <ErrorBoundary message="Algo ha salido mal!" onReset={onReset}>
           <Suspense fallback="Cargando...">
             <Routes>
               <Route path="/" exact element={<Home/>}>
