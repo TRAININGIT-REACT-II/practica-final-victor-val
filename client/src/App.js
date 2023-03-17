@@ -13,6 +13,7 @@ import Registro from "./views/Registro";
 import Home from "./views/Home";
 import DetailNote from "./views/DetailNote";
 import './App.css';
+import EditNote from "./views/EditNote";
 
 
 const App = () => {
@@ -58,6 +59,7 @@ const App = () => {
                 <>
                   <Route path="/notes" element={<Notes />} />
                   <Route path="/notes/:id" element={<DetailNote />} />
+                  <Route path="/editnote/:id" element={<EditNote />} />
                 </>
               }              
               <Route path='*' element={<Navigate to='/' />} />

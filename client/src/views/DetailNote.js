@@ -15,7 +15,6 @@ export default function DetailNote() {
     let params = useParams()
 
     useEffect(() => {
-        console.log(params.id)
         setNotaId(params.id);
         request.perform();
     }, []);

@@ -13,6 +13,7 @@ const Notes = () => {
     const [enviarNota, setEnviarNota] = useState(false);
     const [borrarNota, setBorrarNota] = useState(false);
     const [showDetail, setShowDetail] = useState(false);
+    const [editNote, setEditNote] = useState(false);
     const [notes, setNotes] = useState([]);
     const [notaId, setNotaId] = useState("");
     const [note, setNote] = useState("");
@@ -24,10 +25,6 @@ const Notes = () => {
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
-
-    const fetchNotes = () => {
-        notesRequest.perform();
-    }
 
     if(notesRequest.error || notesInsertRequest.error || deleteRQ.error){
         throw new Error("Error");
@@ -56,7 +53,7 @@ const Notes = () => {
     }, [notesInsertRequest.data]);
 
     useEffect(() => {
-        fetchNotes();
+        notesRequest.perform();
     }, [token]);
 
     useEffect(() => {
@@ -107,8 +104,12 @@ const Notes = () => {
 
     const handleDetail = (id) => {
         setNotaId(id);
-        console.log("detail")
         setShowDetail(true);
+    }
+
+    const handleEditNote = (id) => {
+        setNotaId(id);
+        setEditNote(true);
     }
 
     return (
@@ -118,8 +119,13 @@ const Notes = () => {
             </h3>
 
             {showDetail && <Navigate to={`/notes/${notaId}`}/>}
+            {editNote && <Navigate to={`/editnote/${notaId}`}/>}
 
-            <NoteList notes={notes} showDetail={handleDetail} deleteNote={handleDeleteNote}/>
+            <NoteList notes={notes} 
+                showDetail={handleDetail} 
+                handleEditNote={handleEditNote} 
+                deleteNote={handleDeleteNote
+            }/>
 
             <NewNote handleAddNota={handleAddNota}/>           
             
