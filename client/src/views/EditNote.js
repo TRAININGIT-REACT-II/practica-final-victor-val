@@ -33,17 +33,19 @@ export default function EditNote() {
     }, [request.data]);
 
     useEffect(() => {
-        editRequest.updateParams({
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                title: note.title,
-                content: note.content,
-            }),
-        });   
-        editRequest.perform();
+        if(editar){
+            editRequest.updateParams({
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    title: note.title,
+                    content: note.content,
+                }),
+            });   
+            editRequest.perform();
+        }
     }, [editar]);
 
     const editNote = () => {
