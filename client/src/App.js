@@ -43,8 +43,7 @@ const App = () => {
 
   const onReset = () => {
     window.location.reload(false);
-  }
-
+  };
 
   // Mostramos la aplicación
   return (
@@ -58,9 +57,9 @@ const App = () => {
               <Route path="/" exact element={<Home/>}>
               </Route>
               <Route path="/login" element={<Login/>}></Route>
-              <Route path="/register" element={<Registro/>}></Route>              
-              {signedIn && 
-                <>
+              <Route path="/register" element={<Registro/>}></Route>
+              {signedIn &&                 
+                <>           
                   <Route path="/notes" element={<Notes />} />
                   <Route path="/notes/:id" element={<DetailNote />} />
                   <Route path="/editnote/:id" element={<EditNote />} />

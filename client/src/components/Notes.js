@@ -49,7 +49,6 @@ const Notes = () => {
                 );
                 notesInsertRequest.data = null;
             }
-          
         }
     }, [notesInsertRequest.data]);
 
@@ -90,7 +89,7 @@ const Notes = () => {
         closeModal();
     }
 
-    useEffect(() => {  
+    useEffect(() => {
         if(borrarNota){
             setBorrarNota(false);
             deleteRQ.updateParams({
@@ -100,7 +99,6 @@ const Notes = () => {
             let notesAux = [...notes];
             notesAux = notesAux.filter((item) => item.id !== notaId)
             setNotes(notesAux);
-            
         }        
     }, [borrarNota]);
 

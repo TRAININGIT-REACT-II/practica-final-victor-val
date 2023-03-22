@@ -53,6 +53,7 @@ const useApi = (url, token = "", initialParams = {}, performOnMount = true) => {
   // useEffect que llamará al servidor
   useEffect(() => {
     if (performRequest) {
+      setPerformRequest(false);
       if (!loading) {
         setLoading(true);
       }
