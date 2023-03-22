@@ -1,33 +1,29 @@
-import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useContext, useEffect, useState} from "react";
 import { NoteList } from "./NoteList";
 import Modal from "./Modal";
-import NewNote from "../views/NewNote";
 import User from "../contexts/user";
 import useApi from "../hooks/useApi";
-import { Note } from "../models/Note";
 
 const Notes = () => {
     const user = useContext(User);
     const token = JSON.parse(localStorage.getItem("token"));
     
-    const [enviarNota, setEnviarNota] = useState(false);
     const [borrarNota, setBorrarNota] = useState(false);
     const [showDetail, setShowDetail] = useState(false);
     const [editNote, setEditNote] = useState(false);
+    const [addNote, setAddNote] = useState(false);
     const [notes, setNotes] = useState([]);
     const [notaId, setNotaId] = useState("");
-    const [note, setNote] = useState();
 
     let notesRequest = useApi("/api/notes", token, {}, false);
-    let notesInsertRequest = useApi("/api/notes", token, {}, false);
     let deleteRQ = useApi(`/api/notes/${notaId}`, token, {}, false);
 
     const [showModal, setShowModal] = useState(false);
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
 
-    if(notesRequest.error || notesInsertRequest.error || deleteRQ.error){
+    if(notesRequest.error || deleteRQ.error){
         throw new Error("Error");
     }
     
@@ -39,45 +35,11 @@ const Notes = () => {
         }
     }, [notesRequest.data]);
 
-    useEffect(() => {
-        if(notesInsertRequest.data){        
-            if(enviarNota){
-                setEnviarNota(false);                
-                setNotes(
-                    [...notes,
-                    notesInsertRequest.data]
-                );
-                notesInsertRequest.data = null;
-            }
-        }
-    }, [notesInsertRequest.data]);
 
     useEffect(() => {
         notesRequest.perform();
     }, [token]);
 
-    useEffect(() => {
-        if(enviarNota){ 
-            notesInsertRequest.updateParams({
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    title: note.title,
-                    content: note.content,
-                }),
-            });        
-            notesInsertRequest.perform();
-        }
-    }, [enviarNota]);
-
-    const handleAddNota = (title, content) => {
-        const note = new Note(title, content);
-        setNote(note);
-        if(note && (note.title === '' || note.content === '')) return;
-        setEnviarNota(true);         
-    }
 
     const handleDeleteNote = (id) => {
         setNotaId(id);
@@ -112,6 +74,10 @@ const Notes = () => {
         setEditNote(true);
     }
 
+    const handleAddNote = () => {
+        setAddNote(true);
+    };
+
     return (
         <div>
             <h3>
@@ -120,6 +86,7 @@ const Notes = () => {
 
             {showDetail && <Navigate to={`/notes/${notaId}`}/>}
             {editNote && <Navigate to={`/editnote/${notaId}`}/>}
+            {addNote && <Navigate to={'/newnote'}/>}
 
             <NoteList notes={notes} 
                 showDetail={handleDetail} 
@@ -127,7 +94,7 @@ const Notes = () => {
                 deleteNote={handleDeleteNote
             }/>
 
-            <NewNote handleAddNota={handleAddNota}/>           
+            <button onClick={handleAddNote}>Añadir nota</button>
             
             <Modal show={showModal} onClose={closeModal}>
                 <h3>Borrar nota</h3>

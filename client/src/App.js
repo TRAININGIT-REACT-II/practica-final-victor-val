@@ -14,6 +14,7 @@ import Home from "./views/Home";
 import DetailNote from "./views/DetailNote";
 import './App.css';
 import EditNote from "./views/EditNote";
+import NewNote from "./views/NewNote";
 
 
 const App = () => {
@@ -62,6 +63,7 @@ const App = () => {
                 <>           
                   <Route path="/notes" element={<Notes />} />
                   <Route path="/notes/:id" element={<DetailNote />} />
+                  <Route path="/newnote" element={<NewNote />} />
                   <Route path="/editnote/:id" element={<EditNote />} />
                 </>
               }              
