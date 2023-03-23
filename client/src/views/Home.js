@@ -1,13 +1,28 @@
 import { NavLink } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import User from "../contexts/user";
+import store from "../store";
+import * as identificacionActions from "../actions/identificacion";
 
 /**
  * Pagina principal
  */
 const Home = () => {
   const user = useContext(User);
-  const token = JSON.parse(localStorage.getItem("token"));
+  //const token = JSON.parse(localStorage.getItem("token"));
+  let token;
+  const unsubscribe = store.subscribe(() => {
+    if (store.getState().token != null) {
+      console.log(
+        `${store.getState().token}`
+      );
+      token = store.getState().token;
+    } else {
+      console.log(store.getState());
+    }
+  });
+  
+  store.dispatch(identificacionActions.getToken());
 
   useEffect(() => {
     if(token)

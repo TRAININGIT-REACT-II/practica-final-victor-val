@@ -3,6 +3,8 @@ import { DEFAULT_STATE } from "../constants/form";
 import User from "../contexts/user";
 import useApi from "../hooks/useApi";
 import Notes from "../components/Notes";
+import store from "../store";
+import * as identificacionActions from "../actions/identificacion";
 
 const Registro = () => {
     const [formState, setFormState] = useState(DEFAULT_STATE);
@@ -12,9 +14,11 @@ const Registro = () => {
     const passwordRef = useRef(null);
 
     let token;
+
     if (registroRequest.data) {
         token = registroRequest.data.token;
         localStorage.setItem('token', JSON.stringify(token));
+        store.dispatch(identificacionActions.updateToken(token));
     }
 
     useEffect(() => {
