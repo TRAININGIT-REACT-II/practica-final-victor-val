@@ -91,8 +91,8 @@ const Notes = () => {
             <NoteList notes={notes} 
                 showDetail={handleDetail} 
                 handleEditNote={handleEditNote} 
-                deleteNote={handleDeleteNote
-            }/>
+                deleteNote={handleDeleteNote}
+            />
 
             <button onClick={handleAddNote}>Añadir nota</button>
             

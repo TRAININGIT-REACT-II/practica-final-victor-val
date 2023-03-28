@@ -9,7 +9,7 @@ import * as identificacionActions from "../actions/identificacion";
  */
 const Home = () => {
   const user = useContext(User);
-  //const token = JSON.parse(localStorage.getItem("token"));
+  
   let token;
   const unsubscribe = store.subscribe(() => {
     if (store.getState().token != null) {
