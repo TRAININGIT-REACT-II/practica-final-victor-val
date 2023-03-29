@@ -116,3 +116,12 @@ nav.secondary a {
   .sepArr{
     margin-top: 10px;
   }
+
+  .cards{
+    display: flex;
+    flex-direction: column;
+  }
+  .card{
+    margin: 20px;
+    padding: 30px;
+  }

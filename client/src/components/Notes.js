@@ -4,6 +4,7 @@ import { NoteList } from "./NoteList";
 import Modal from "./Modal";
 import User from "../contexts/user";
 import useApi from "../hooks/useApi";
+import { NoteCards } from "./NoteCards";
 
 const Notes = () => {
     const user = useContext(User);
@@ -11,6 +12,7 @@ const Notes = () => {
     
     const [borrarNota, setBorrarNota] = useState(false);
     const [showDetail, setShowDetail] = useState(false);
+    const [vista, setVista] = useState("list");
     const [editNote, setEditNote] = useState(false);
     const [addNote, setAddNote] = useState(false);
     const [notes, setNotes] = useState([]);
@@ -78,6 +80,13 @@ const Notes = () => {
         setAddNote(true);
     };
 
+    const handleVistaNotas = () => {
+        if(vista === "cards")
+            setVista("list")
+        else
+            setVista("cards")
+    }
+
     return (
         <div>
             <h3>
@@ -88,11 +97,19 @@ const Notes = () => {
             {editNote && <Navigate to={`/editnote/${notaId}`}/>}
             {addNote && <Navigate to={'/newnote'}/>}
 
-            <NoteList notes={notes} 
+            {vista === "list" && <NoteList notes={notes} 
                 showDetail={handleDetail} 
                 handleEditNote={handleEditNote} 
                 deleteNote={handleDeleteNote}
-            />
+                handleVistaNotas={handleVistaNotas}
+            />}
+
+            {vista === "cards" && <NoteCards notes={notes} 
+                showDetail={handleDetail} 
+                handleEditNote={handleEditNote} 
+                deleteNote={handleDeleteNote}
+                handleVistaNotas={handleVistaNotas}
+            />}
 
             <button onClick={handleAddNote}>Añadir nota</button>
             

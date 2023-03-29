@@ -1,8 +1,11 @@
 import React from 'react'
 import NoteItem from './NoteItem';
 import {useState, useEffect} from "react";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
-export function NoteList({notes, showDetail, handleEditNote, deleteNote, handleVistaNotas}) {
+
+export function NoteCards({notes, showDetail, handleEditNote, deleteNote, handleVistaNotas}) {
     const [notas, setNotas] = useState([]);
 
     useEffect(() => {
@@ -23,11 +26,16 @@ export function NoteList({notes, showDetail, handleEditNote, deleteNote, handleV
         <>
             <button onClick={handleOrder}>Ordenar por title</button>
             <button onClick={handleVista}>Cambiar vista</button>
-            <ul>
+            <div className='cards'>
                 {notas && notas.map(note => (
-                    <NoteItem note={note} showDetail={showDetail} handleEditNote={handleEditNote} deleteNote={deleteNote} />
+                    <Card sx={{ minWidth: 275, }} className="card">
+                        <CardContent>                                                    
+                            <NoteItem note={note} showDetail={showDetail} handleEditNote={handleEditNote} deleteNote={deleteNote} />
+                        </CardContent>
+                    </Card>
                 ))}
-            </ul>
+            </div>
+
         </>
     );
 }
